@@ -3,31 +3,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-class Avl{
+struct NODE{
+    int key;
+    struct NODE *left, *right;
+    int h;
+    explicit NODE(int);
+};
 
-    public:
-        typedef struct node{
-            int key;
-            struct node *left;
-            struct node *right;
-            int h;
-        }NODE;
+class AvlTree{
 
-        typedef NODE* POINT;
 
-        POINT rootAvl;
+private:
+    NODE *root;
 
-        void printTree(POINT r);
+protected:
+    NODE* insert(NODE *&, int key);
+    void printTree(NODE *&);
+    int height (NODE *&);
+    NODE* rightRotation(NODE *&);
+    NODE* leftRotation(NODE *&);
+    NODE* leftRightRotation(NODE *&);
+    NODE* rightLeftRotation(NODE *&);
 
-        POINT createNode(int key);
 
-        int height (POINT r);
-        POINT rightRotation(POINT r);
-        POINT leftRotation(POINT r);
-        POINT leftRightRotation(POINT r);
-        POINT rightLeftRotation(POINT r);
-        void initTree();
-        POINT getRootAvl();
-        POINT insert(POINT r, int key);
+public:
+    AvlTree();
+    void inserValue(int);
+    void printTree();
+
 
 };

@@ -1,9 +1,7 @@
 #include "rbt.hpp"
 
-using namespace std;
-
 Node::Node(int data) {
-    this->data = data;
+    this->key = data;
     color = RED;
     left = right = parent = NULL;
 }
@@ -22,7 +20,6 @@ int RBTree::getColor(Node *&node) {
 void RBTree::setColor(Node *&node, int color) {
     if (node == NULL)
         return;
-
     node->color = color;
 }
 
@@ -30,10 +27,10 @@ Node* RBTree::insertBST(Node *&root, Node *&ptr) {
     if (root == NULL)
         return ptr;
 
-    if (ptr->data < root->data) {
+    if (ptr->key < root->key) {
         root->left = insertBST(root->left, ptr);
         root->left->parent = root;
-    } else if (ptr->data > root->data) {
+    } else if (ptr->key > root->key) {
         root->right = insertBST(root->right, ptr);
         root->right->parent = root;
     }
@@ -107,7 +104,7 @@ void RBTree::fixInsertRBTree(Node *&ptr) {
                     parent = ptr->parent;
                 }
                 rotateRight(grandparent);
-                swap(parent->color, grandparent->color);
+                std::swap(parent->color, grandparent->color);
                 ptr = parent;
             }
         } else {
@@ -124,7 +121,7 @@ void RBTree::fixInsertRBTree(Node *&ptr) {
                     parent = ptr->parent;
                 }
                 rotateLeft(grandparent);
-                swap(parent->color, grandparent->color);
+                std::swap(parent->color, grandparent->color);
                 ptr = parent;
             }
         }
@@ -139,7 +136,7 @@ void RBTree::printTree() {
 
 void RBTree::printTree(Node *&ptr) {
     if(ptr != NULL){
-        printf("%d", ptr->data);
+        printf("%d", ptr->key);
         printf("(");
         printTree (ptr->left);
         printTree (ptr->right);

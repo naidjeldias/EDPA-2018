@@ -1,53 +1,32 @@
 #include "avl.hpp"
 
-
-//typedef struct node POINT;
-
-
-//exibindo usando percurso pre ordem(raiz - sub esq - sub dir)
-void Avl::printTree(POINT r) {
-    if(r != NULL){
-        printf("%d", r->key);
-        printf("(");
-        printTree (r->left);
-        printTree (r->right);
-        printf(")");
-    }
+NODE::NODE(int data) {
+    this->key = data;
+    h = 0;
+    left = right = NULL;
 }
 
-Avl::POINT Avl::createNode(int key) {
-    POINT nwNode = (POINT) malloc(sizeof(NODE));
-
-    nwNode->left  = NULL;
-    nwNode->right = NULL;
-
-    nwNode->key = key;
-    nwNode->h   = 0;
-    return nwNode;
+AvlTree::AvlTree() {
+    root = NULL;
 }
 
-
-
-int Avl::height(POINT r) {
+int AvlTree::height(NODE *&r) {
     if(!r) return -1;
     return r->h;
 }
 
-Avl::POINT Avl::rightRotation(POINT r) {
-    POINT aux;
+NODE* AvlTree::rightRotation(NODE *&r) {
+    NODE *aux;
     aux = r->left;
     r->left = aux->right;
     aux->right = r;
-
     r->h = std::max(height(r->right),height(r->left)) + 1;
-
     aux->h = std::max(height(aux->left),r->h) + 1;
-
     return aux;
 }
 
-Avl::POINT Avl::leftRotation(POINT r) {
-    POINT aux;
+NODE* AvlTree::leftRotation(NODE *&r) {
+    NODE *aux;
     aux = r->right;
     r->right = aux->left;
     aux->left = r;
@@ -59,27 +38,22 @@ Avl::POINT Avl::leftRotation(POINT r) {
     return aux;
 }
 
-Avl::POINT Avl::leftRightRotation(POINT r) {
+NODE* AvlTree::leftRightRotation(NODE *&r) {
     r->left = leftRotation(r->left);
     return rightRotation(r);
 }
 
-Avl::POINT Avl::rightLeftRotation(POINT r) {
+NODE* AvlTree::rightLeftRotation(NODE *&r) {
     r->right = rightRotation(r->right);
     return leftRotation(r);
 }
 
-void Avl::initTree() {
-    rootAvl = NULL;
-}
+NODE* AvlTree::insert(NODE *&r, int key) {
 
-Avl::POINT Avl::getRootAvl() {
-    return rootAvl;
-}
-
-Avl::POINT Avl::insert(POINT r, int key) {
-    //se a raiz for nula cria o nó e este será a nova arvore
-    if(!r) return createNode(key);
+    if(!r) {
+        NODE *node = new NODE(key);
+        return node;
+    };
     // se a chave for menor, inserir na esquerda
     if(key < r->key){
         r->left = insert(r->left, key);
@@ -113,4 +87,24 @@ Avl::POINT Avl::insert(POINT r, int key) {
 
 
     return r;
+}
+
+void AvlTree::inserValue(int n) {
+
+    root = insert(root, n);
+}
+
+void AvlTree::printTree() {
+    printTree(root);
+}
+
+//exibindo usando percurso pre ordem(raiz - sub esq - sub dir)
+void AvlTree::printTree(NODE *&r) {
+    if(r != NULL){
+        printf("%d", r->key);
+        printf("(");
+        printTree (r->left);
+        printTree (r->right);
+        printf(")");
+    }
 }

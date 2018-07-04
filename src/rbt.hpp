@@ -2,23 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum Color {RED, BLACK, DOUBLE_BLACK};
+enum Color {RED, BLACK};
 
-typedef struct node{
-    int key;
-    struct node *left;
-    struct node *right;
-    int h;
-}NODE;
-
-typedef NODE* POINT;
 
 struct Node
 {
-    int data;
+    int key;
     int color;
     Node *left, *right, *parent;
-
     explicit Node(int);
 };
 
@@ -34,11 +25,9 @@ protected:
     int getColor(Node *&);
     void setColor(Node *&, int);
     void printTree(Node *&);
-
-
     Node* insertBST(Node *&, Node *&);
-
     int getBlackHeight(Node *);
+
 public:
     RBTree();
     void insertValue(int);
