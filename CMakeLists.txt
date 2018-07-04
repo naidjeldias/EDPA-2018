@@ -4,9 +4,10 @@ project(AVL)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-        main.cpp
-        avl.hpp
-        avl.cpp
-        rbt.hpp
-        rbt.cpp)
+        src/main.cpp
+        src/avl.cpp
+        src/avl.hpp
+        src/rbt.cpp
+        src/rbt.hpp
+        )
 add_executable(AVL ${SOURCE_FILES})
