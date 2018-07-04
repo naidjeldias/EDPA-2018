@@ -1,11 +1,12 @@
 #include <iostream>
 #include "avl.hpp"
-
-
+#include "rbt.hpp"
 
 int main() {
     int key = 0 ;
     int count = 1;
+
+    RBTree rbTree1;
 
     Avl avl;
     avl.initTree();
@@ -18,14 +19,17 @@ int main() {
         scanf("%d",&key);
         if(key != -1){
             avl_root = avl.insert(avl_root,key);
-            avl.printTree(avl_root);
+            rbTree1.insertValue(key);
         }else{
             printf ("Inserção terminada\n");
         }
         count++;
     }
-    printf ("Imprimindo arvore...\n");
+    printf ("Imprimindo arvores...\n");
+    printf ("AVL\n");
     avl.printTree(avl_root);
+    printf ("Rubro negra\n");
+    rbTree1.printTree();
 
     return 0;
 }

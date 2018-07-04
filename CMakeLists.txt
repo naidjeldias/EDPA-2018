@@ -6,5 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES
         main.cpp
         avl.hpp
-        avl.cpp)
+        avl.cpp
+        rbt.hpp
+        rbt.cpp)
 add_executable(AVL ${SOURCE_FILES})
