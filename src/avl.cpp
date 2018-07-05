@@ -64,10 +64,10 @@ NODE* AvlTree::insert(NODE *&r, int key) {
             // e isso requer uma rotação simples a direita, caso contrário simples a esquerda e depois simples a direita
             if (key < r->left->key){
                 r = rightRotation(r);
-                printf ("Rotação a direita\n");
+                //printf ("Rotação a direita\n");
             } else{
                 r = leftRightRotation(r);
-                printf ("Rotação a esquerda e direita\n");
+                //printf ("Rotação a esquerda e direita\n");
             }
         }
     }else
@@ -76,10 +76,10 @@ NODE* AvlTree::insert(NODE *&r, int key) {
         if (height(r->right) - height(r->left) == 2){
             if (key > r->right->key){
                 r = leftRotation(r);
-                printf ("Rotação a esquerda\n");
+                //printf ("Rotação a esquerda\n");
             } else{
                 r = rightLeftRotation(r);
-                printf ("Rotação a direita e esquerda\n");
+                //printf ("Rotação a direita e esquerda\n");
             }
         }
     }
@@ -107,4 +107,8 @@ void AvlTree::printTree(NODE *&r) {
         printTree (r->right);
         printf(")");
     }
+}
+
+NODE* AvlTree::getRoot() {
+    return root;
 }

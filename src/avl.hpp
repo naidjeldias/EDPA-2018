@@ -30,6 +30,7 @@ public:
     AvlTree();
     void insertValue(int);
     void printTree();
+    NODE* getRoot();
 
 
 };

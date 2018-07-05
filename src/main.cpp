@@ -4,12 +4,15 @@
 #include "utils.hpp"
 #include <string>
 
+
 enum letters {};
 
 int main() {
-    std::string key = "0" ;
+    srand(static_cast<unsigned int>(time(0)));
+    std::string key = "0";
     int count = 1;
     int opt = 0;
+    std::string randKey;
 
     RBTree rbTree;
     AvlTree avlTree;
@@ -39,7 +42,7 @@ int main() {
                         if(isdigit(key[0])){
                             printf ("É digito\n");
                             avlTree.insertValue(atoi(key.c_str()));
-                            //rbTree.insertValue(atoi(key.c_str()));
+//                            rbTree.insertValue(atoi(key.c_str()));
                         }else{
                             printf ("É caracter\n");
                             int value = utils.mapChar(key[0]);
@@ -54,11 +57,36 @@ int main() {
             }
         }else if (opt == 2){
             printf ("Opção 2\n");
+            //tamanho da chave a ser gerada
+            int size = 20 + std::rand() % (100-20+1);
+            for(int j=0; j < size; j++){
+                int value;
+                //caso seja 1 gerar números caso contrário letras
+                int type = std::rand() % 2;
+                if(type == 1){
+                    // gerar números até 999
+                    value = std::rand() % 1000;
+                    avlTree.insertValue(value);
+                    //rbTree.insertValue(value);
+                    randKey = randKey+" "+std::to_string(value);
+
+                }else{
+                    //intervalo de valores da tabela ASCII a ser gerado
+                    value = 58 + rand() % (126 - 58 +1);
+                    rbTree.insertValue(value);
+                    //avlTree.insertValue(value);
+                    char aChar = (char) value;
+                    randKey = randKey+" "+aChar;
+                }
+            }
+            break;
         }else{
             opt = 0;
             printf ("Por favor inserir um dos valores acima\n");
         }
     }
+    std::cout << "Chave gerada:\n";
+    std::cout << randKey <<"\n";
     printf ("Imprimindo arvores...\n");
     printf ("AVL\n");
     avlTree.printTree();

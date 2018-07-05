@@ -153,3 +153,7 @@ int RBTree::getBlackHeight(Node *node) {
     }
     return blackheight;
 }
+
+Node* RBTree::getRoot() {
+    return root;
+}

@@ -32,5 +32,6 @@ public:
     RBTree();
     void insertValue(int);
     void printTree();
+    Node* getRoot();
 
 };
