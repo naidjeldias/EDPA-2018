@@ -1,8 +1,6 @@
 #include <iostream>
-#include "avl.hpp"
-#include "rbt.hpp"
 #include "utils.hpp"
-#include <string>
+
 
 
 enum letters {};
@@ -17,6 +15,7 @@ int main() {
     RBTree rbTree;
     AvlTree avlTree;
     Utils utils;
+    Pile pile1;
 
     while(opt == 0){
         printf ("Gostaria de inserir os caracteres da chave ou gerar uma aleatoria:\n");
@@ -85,6 +84,7 @@ int main() {
             printf ("Por favor inserir um dos valores acima\n");
         }
     }
+
     std::cout << "Chave gerada:\n";
     std::cout << randKey <<"\n";
     printf ("Imprimindo arvores...\n");
@@ -92,6 +92,7 @@ int main() {
     avlTree.printTree();
     printf ("\nRubro negra\n");
     rbTree.printTree();
+    std::cout<<"\nSenha: "<<utils.intercalate(avlTree,rbTree);
 
     return 0;
 }

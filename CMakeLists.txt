@@ -10,5 +10,7 @@ set(SOURCE_FILES
         src/rbt.cpp
         src/rbt.hpp
         src/utils.cpp
-        src/utils.hpp)
+        src/utils.hpp
+        src/pile.cpp
+        src/pile.hpp)
 add_executable(AVL ${SOURCE_FILES})

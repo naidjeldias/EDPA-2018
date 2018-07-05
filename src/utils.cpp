@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include "utils.hpp"
 
-
 bool Utils::validInput(std::string input) {
 
     for(int i=0; i <input.length();i++){
@@ -17,24 +16,43 @@ int Utils::mapChar(char c) {
     return int(c);
 }
 
-std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
-    NODE* rootAvl = avlTree.getRoot();
-    Node* rootRB  = rbTree.getRoot();
+void Utils::runAvlRight(Pile &p, NODE *&r) {
+    p.push(r->key);
+    if(r->right == NULL)
+        return;
+    runAvlRight(p,r->right);
 
-    return intercalTree(rootRB, rootAvl);
 }
 
-std::string Utils::intercalTree(Node *&r_avl, NODE *&r_rbt) {
+void Utils::runRBTRight(Pile &p, Node *&r) {
+    p.push(r->key);
+    if(r->right == NULL)
+        return;
+    runRBTRight(p,r->right);
+}
 
-    if(!r_avl && !r_rbt)
-        return pswrd;
-    else if(r_avl && !r_rbt){
-        pswrd += std::to_string(r_avl->key);
-        return intercalTree(r_avl->right,NULL);
-    }else if(r_rbt && !r_avl){
 
+
+std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
+    Pile avlStack;
+    Pile rbtStack;
+
+    std::string pswd;
+
+    NODE *rAvl = avlTree.getRoot();
+    Node *rRbt = rbTree.getRoot();
+
+    runAvlRight(avlStack, rAvl);
+    runRBTRight(rbtStack, rRbt);
+
+    for (int i = 0; i <= std::max(avlStack.getSize(), rbtStack.getSize()) +1 ; ++i) {
+        if(avlStack.getSize()>=0)
+            pswd += (char) rbtStack.pop();
+        if(rbtStack.getSize() >= 0)
+            pswd += std::to_string(avlStack.pop());
     }
 
 
 
+    return pswd;
 }

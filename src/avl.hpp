@@ -12,7 +12,6 @@ struct NODE{
 
 class AvlTree{
 
-
 private:
     NODE *root;
 
