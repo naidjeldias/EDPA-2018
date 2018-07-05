@@ -136,11 +136,15 @@ void RBTree::printTree() {
 
 void RBTree::printTree(Node *&ptr) {
     if(ptr != NULL){
-        printf("%d", ptr->key);
-        printf("(");
+        char c = (char) ptr->key;
+        if(ptr->color == 0)
+            std::cout << c <<"-red";
+        else
+            std::cout << c <<"-black";
+        std::cout << "(";
         printTree (ptr->left);
         printTree (ptr->right);
-        printf(")");
+        std::cout << ")";
     }
 }
 

@@ -31,8 +31,6 @@ void Utils::runRBTRight(Pile &p, Node *&r) {
     runRBTRight(p,r->right);
 }
 
-
-
 std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
     Pile avlStack;
     Pile rbtStack;
@@ -51,8 +49,6 @@ std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
         if(rbtStack.getSize() >= 0)
             pswd += std::to_string(avlStack.pop());
     }
-
-
 
     return pswd;
 }

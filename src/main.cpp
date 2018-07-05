@@ -1,10 +1,6 @@
 #include <iostream>
 #include "utils.hpp"
 
-
-
-enum letters {};
-
 int main() {
     srand(static_cast<unsigned int>(time(0)));
     std::string key = "0";
@@ -15,22 +11,19 @@ int main() {
     RBTree rbTree;
     AvlTree avlTree;
     Utils utils;
-    Pile pile1;
 
     while(opt == 0){
-        printf ("Gostaria de inserir os caracteres da chave ou gerar uma aleatoria:\n");
-        printf ("1 - para inserir\n");
-        printf ("2 - para gerar\n");
-        scanf("%d",&opt);
+        std::cout <<"Gostaria de inserir os caracteres da chave ou gerar uma aleatoria:\n";
+        std::cout << "1 - para inserir\n";
+        std::cout << "2 - para gerar\n";
+        std::cin >> opt;
         if(opt == 1){
-            printf ("Insira os elementos da chave ou -1 para terminar a inserção\n");
             while (key != "-1"){
-                printf ("\nInsira o elemento %d da chave ou -1 para terminar a inserção",count);
+                std::cout <<"\nInsira o elemento "<< count <<" da chave ou -1 para terminar a inserção";
                 std::cin >> key;
                 if(key != "-1"){
                     if(key.length() > 1){
                         if(utils.validInput(key)) {
-                            printf ("É digito\n");
                             avlTree.insertValue(atoi(key.c_str()));
                             //rbTree.insertValue(atoi(key.c_str()));
                         }else{
@@ -39,18 +32,16 @@ int main() {
                         }
                     } else {
                         if(isdigit(key[0])){
-                            printf ("É digito\n");
                             avlTree.insertValue(atoi(key.c_str()));
 //                            rbTree.insertValue(atoi(key.c_str()));
                         }else{
-                            printf ("É caracter\n");
                             int value = utils.mapChar(key[0]);
                             rbTree.insertValue(value);
                             //avlTree.insertValue(value);
                         }
                     }
                 }else{
-                    printf ("Inserção terminada\n");
+                    std::cout <<"Inserção terminada\n";
                 }
                 count++;
             }
@@ -81,16 +72,18 @@ int main() {
             break;
         }else{
             opt = 0;
-            printf ("Por favor inserir um dos valores acima\n");
+            std::cout <<"Por favor escolha uma das opções acima\n";
         }
     }
 
-    std::cout << "Chave gerada:\n";
-    std::cout << randKey <<"\n";
-    printf ("Imprimindo arvores...\n");
-    printf ("AVL\n");
+    if(!randKey.empty()){
+        std::cout << "\nChave:\n";
+        std::cout << randKey <<"\n";
+    }
+    std::cout <<"\nImprimindo arvores em pré ordem...\n";
+    std::cout <<"AVL\n";
     avlTree.printTree();
-    printf ("\nRubro negra\n");
+    std::cout<<"\nRubro negra\n";
     rbTree.printTree();
     std::cout<<"\nSenha: "<<utils.intercalate(avlTree,rbTree);
 
