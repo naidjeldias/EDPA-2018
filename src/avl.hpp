@@ -28,7 +28,7 @@ protected:
 
 public:
     AvlTree();
-    void inserValue(int);
+    void insertValue(int);
     void printTree();
 
 

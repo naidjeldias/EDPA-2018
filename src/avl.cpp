@@ -89,7 +89,7 @@ NODE* AvlTree::insert(NODE *&r, int key) {
     return r;
 }
 
-void AvlTree::inserValue(int n) {
+void AvlTree::insertValue(int n) {
 
     root = insert(root, n);
 }
