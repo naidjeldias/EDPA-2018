@@ -86,7 +86,7 @@ int main() {
     avlTree.printTree();
     std::cout<<"\nRubro negra\n";
     rbTree.printTree();
-    std::cout<<"\nSenha: "<<utils.intercalate(avlTree,rbTree);
+    std::cout<<"\nSenha: "<<utils.intercalate(avlTree,rbTree)<<"\n";
 
     return 0;
 }

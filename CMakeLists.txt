@@ -13,4 +13,4 @@ set(SOURCE_FILES
         src/utils.hpp
         src/pile.cpp
         src/pile.hpp)
-add_executable(AVL ${SOURCE_FILES})
+add_executable(TreeEncrypter ${SOURCE_FILES})
