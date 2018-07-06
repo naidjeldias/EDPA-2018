@@ -7,6 +7,7 @@ int main() {
     int count = 1;
     int opt = 0;
     std::string randKey;
+    int sizeKey;
 
     RBTree rbTree;
     AvlTree avlTree;
@@ -49,8 +50,8 @@ int main() {
         }else if (opt == 2){
             printf ("Opção 2\n");
             //tamanho da chave a ser gerada
-            int size = 20 + std::rand() % (100-20+1);
-            for(int j=0; j < size; j++){
+            sizeKey = 20 + std::rand() % (100-20+1);
+            for(int j=0; j < sizeKey; j++){
                 int value;
                 //caso seja 1 gerar números caso contrário letras
                 int type = std::rand() % 2;
@@ -78,15 +79,24 @@ int main() {
     }
 
     if(!randKey.empty()){
-        std::cout << "\nChave:\n";
+        std::cout << "\nChave gerada:\n";
         std::cout << randKey <<"\n";
+        std::cout <<"Tamanho da chave : "<<sizeKey<<"\n";
     }
     std::cout <<"\nImprimindo arvores em pré ordem...\n";
-    std::cout <<"AVL\n";
+    std::cout <<"\nAVL\n";
+    std::cout <<"Tempo gasto para construir : "<<avlTree.getTime()<<" ms\n";
+    std::cout <<"Numero de elmentos inseridos : "<<avlTree.getNumElements()<<"\n";
     avlTree.printTree();
+    std::cout<<"\n";
     std::cout<<"\nRubro negra\n";
+    std::cout <<"Tempo gasto para construir : "<<rbTree.getTime()<<" ms\n";
+    std::cout <<"Numero de elmentos inseridos : "<<rbTree.getNumElements()<<"\n";
     rbTree.printTree();
-    std::cout<<"\nSenha: "<<utils.intercalate(avlTree,rbTree)<<"\n";
+    std::cout<<"\n";
+    std::cout<<"\n";
+    std::cout <<"Tempo gasto para gerar a senha (função intercala) : "<<utils.getTime()<<" ms\n";
+    std::cout<<"Senha: "<<utils.intercalate(avlTree,rbTree)<<"\n";
 
     return 0;
 }

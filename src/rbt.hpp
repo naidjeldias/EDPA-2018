@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include "time.h"
 
 enum Color {RED, BLACK};
 
@@ -17,6 +18,8 @@ class RBTree{
 
 private:
     Node *root;
+    double constructTime;
+    int numElements;
 
 protected:
     void rotateLeft(Node *&);
@@ -33,5 +36,7 @@ public:
     void insertValue(int);
     void printTree();
     Node* getRoot();
+    double getTime();
+    int getNumElements();
 
 };

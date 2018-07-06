@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include "time.h"
 
 struct NODE{
     int key;
@@ -14,6 +15,9 @@ class AvlTree{
 
 private:
     NODE *root;
+    double constructTime;
+    int numElements;
+
 
 protected:
     NODE* insert(NODE *&, int key);
@@ -30,6 +34,8 @@ public:
     void insertValue(int);
     void printTree();
     NODE* getRoot();
+    double getTime();
+    int getNumElements();
 
 
 };
