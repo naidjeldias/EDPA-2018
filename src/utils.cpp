@@ -31,6 +31,8 @@ void Utils::runRBTRight(Pile &p, Node *&r) {
     runRBTRight(p,r->right);
 }
 
+
+
 std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
     //constructTime = 0;
     Pile avlStack;
