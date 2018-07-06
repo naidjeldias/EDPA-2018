@@ -48,10 +48,17 @@ std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
     int hmax = std::max(avlStack.getSize(), rbtStack.getSize());
 
     for (int i = 0; i < hmax ; ++i) {
-        if(rbtStack.getSize() > 0)
+        if(rbtStack.getSize() > 0){
             pswd += (char) rbtStack.pop();
-        if(avlStack.getSize()>0)
+            //pswd += std::to_string(rbtStack.pop());
+        }
+
+        if(avlStack.getSize()>0){
             pswd += std::to_string(avlStack.pop());
+            //pswd += (char) avlStack.pop();
+        }
+
+
     }
 
     clock_t end = clock();
