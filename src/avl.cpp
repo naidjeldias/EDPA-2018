@@ -81,7 +81,9 @@ NODE* AvlTree::insert(NODE *&r, int key) {
 
 void AvlTree::insertValue(int n) {
     clock_t start = clock();
+
     root = insert(root, n);
+
     clock_t end = clock();
     double insertTime = ((double) (end - start))/CLOCKS_PER_SEC;
     constructTime += insertTime;

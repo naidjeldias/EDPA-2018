@@ -4,7 +4,6 @@
 #include "utils.hpp"
 
 bool Utils::validInput(std::string input) {
-
     for(int i=0; i <input.length();i++){
         if(!isdigit(input[i]))
             return false;
@@ -53,8 +52,8 @@ std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
             pswd += (char) rbtStack.pop();
         if(avlStack.getSize()>0)
             pswd += std::to_string(avlStack.pop());
-
     }
+
     clock_t end = clock();
     constructTime = ((double) (end - start))/CLOCKS_PER_SEC;
 
