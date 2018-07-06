@@ -1,0 +1,11 @@
+<--Execução-->
+Primeiro é preciso compilar o projeto, no terminal executar o comando
+	
+	sh build.sh
+
+Para executar executar o comando
+	
+	sh run.sh
+
+O projeto contém o arquivo CMakeLists.txt para caso queira utilizar
+IDE como CLion ou compilar usando CMake
