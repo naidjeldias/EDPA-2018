@@ -10,9 +10,12 @@ class Utils{
 private:
     void runAvlRight(Pile &, NODE *&);
     void runRBTRight(Pile &, Node *&);
+    double constructTime;
+
 public:
     int mapChar(char);
     bool validInput(std::string);
     std::string intercalate(AvlTree avlTree, RBTree);
+    double getTime();
 
 };

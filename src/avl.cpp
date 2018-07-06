@@ -8,6 +8,8 @@ NODE::NODE(int data) {
 
 AvlTree::AvlTree() {
     root = NULL;
+    constructTime = 0;
+    numElements = 0;
 }
 
 int AvlTree::height(NODE *&r) {
@@ -90,8 +92,13 @@ NODE* AvlTree::insert(NODE *&r, int key) {
 }
 
 void AvlTree::insertValue(int n) {
-
+    clock_t start = clock();
     root = insert(root, n);
+    clock_t end = clock();
+    double insertTime = ((double) (end - start))/CLOCKS_PER_SEC;
+    constructTime += insertTime;
+    numElements ++;
+    numElements =+ numElements;
 }
 
 void AvlTree::printTree() {
@@ -111,4 +118,12 @@ void AvlTree::printTree(NODE *&r) {
 
 NODE* AvlTree::getRoot() {
     return root;
+}
+
+int AvlTree::getNumElements() {
+    return numElements;
+}
+
+double AvlTree::getTime() {
+    return constructTime;
 }

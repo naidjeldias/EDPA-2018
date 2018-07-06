@@ -8,6 +8,8 @@ Node::Node(int data) {
 
 RBTree::RBTree() {
     root = NULL;
+    constructTime = 0;
+    numElements = 0;
 }
 
 int RBTree::getColor(Node *&node) {
@@ -39,9 +41,15 @@ Node* RBTree::insertBST(Node *&root, Node *&ptr) {
 }
 
 void RBTree::insertValue(int n) {
+    clock_t start = clock();
     Node *node = new Node(n);
     root = insertBST(root, node);
     fixInsertRBTree(node);
+    clock_t end = clock();
+    double insertTime = ((double) (end - start))/CLOCKS_PER_SEC;
+    constructTime += insertTime;
+    numElements ++;
+    numElements =+ numElements;
 }
 
 void RBTree::rotateLeft(Node *&ptr) {
@@ -160,4 +168,12 @@ int RBTree::getBlackHeight(Node *node) {
 
 Node* RBTree::getRoot() {
     return root;
+}
+
+double RBTree::getTime() {
+    return constructTime;
+}
+
+int RBTree::getNumElements() {
+    return numElements;
 }

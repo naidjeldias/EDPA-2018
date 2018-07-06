@@ -32,10 +32,12 @@ void Utils::runRBTRight(Pile &p, Node *&r) {
 }
 
 std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
+    //constructTime = 0;
     Pile avlStack;
     Pile rbtStack;
-
     std::string pswd;
+
+    clock_t start = clock();
 
     NODE *rAvl = avlTree.getRoot();
     Node *rRbt = rbTree.getRoot();
@@ -49,6 +51,11 @@ std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
         if(rbtStack.getSize() >= 0)
             pswd += std::to_string(avlStack.pop());
     }
+    clock_t end = clock();
+    constructTime = ((double) (end - start))/CLOCKS_PER_SEC;
 
     return pswd;
+}
+double Utils::getTime() {
+    return constructTime;
 }

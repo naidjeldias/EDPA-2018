@@ -1,8 +1,5 @@
-#!/bin/bash
-
-mkdir build/
-cd build/
-cmake ..
-thread_num=$(nproc)
-make -j$((++thread_num))
+#!/bin/sh
+#__BEGIN_MAIN__
+cd src/
+g++ -std=c++11  *.cpp -o treeEncrypter
 cd ..
