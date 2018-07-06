@@ -12,39 +12,41 @@ RBTree::RBTree() {
     numElements = 0;
 }
 
-int RBTree::getColor(Node *&node) {
-    if (node == NULL)
+int RBTree::getColor(Node *&ptr) {
+    if (ptr == NULL)
         return BLACK;
 
-    return node->color;
+    return ptr->color;
 }
 
-void RBTree::setColor(Node *&node, int color) {
-    if (node == NULL)
+void RBTree::setColor(Node *&ptr, int color) {
+    if (ptr == NULL)
         return;
-    node->color = color;
+    ptr->color = color;
 }
 
-Node* RBTree::insertBST(Node *&root, Node *&ptr) {
-    if (root == NULL)
+Node* RBTree::insertBST(Node *&r, Node *&ptr) {
+    if (r == NULL)
         return ptr;
 
-    if (ptr->key < root->key) {
-        root->left = insertBST(root->left, ptr);
-        root->left->parent = root;
-    } else if (ptr->key > root->key) {
-        root->right = insertBST(root->right, ptr);
-        root->right->parent = root;
+    if (ptr->key < r->key) {
+        r->left = insertBST(r->left, ptr);
+        r->left->parent = r;
+    } else if (ptr->key > r->key) {
+        r->right = insertBST(r->right, ptr);
+        r->right->parent = r;
     }
 
-    return root;
+    return r;
 }
 
 void RBTree::insertValue(int n) {
     clock_t start = clock();
+
     Node *node = new Node(n);
     root = insertBST(root, node);
     fixInsertRBTree(node);
+
     clock_t end = clock();
     double insertTime = ((double) (end - start))/CLOCKS_PER_SEC;
     constructTime += insertTime;
@@ -156,15 +158,6 @@ void RBTree::printTree(Node *&ptr) {
     }
 }
 
-int RBTree::getBlackHeight(Node *node) {
-    int blackheight = 0;
-    while (node != NULL) {
-        if (getColor(node) == BLACK)
-            blackheight++;
-        node = node->left;
-    }
-    return blackheight;
-}
 
 Node* RBTree::getRoot() {
     return root;

@@ -3,7 +3,7 @@
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
-    std::string key = "0";
+    std::string key;
     int count = 1;
     int opt = 0;
     std::string randKey;
@@ -49,22 +49,18 @@ int main() {
             }
         }else if (opt == 2){
             printf ("Opção 2\n");
-            //tamanho da chave a ser gerada
-            sizeKey = 20 + std::rand() % (100-20+1);
+            sizeKey = 20 + std::rand() % (100-20+1);/**tamanho da chave a ser gerada */
             for(int j=0; j < sizeKey; j++){
                 int value;
-                //caso seja 1 gerar números caso contrário letras
-                int type = std::rand() % 2;
+                int type = std::rand() % 2;/**caso seja 1 gerar números caso contrário letras */
                 if(type == 1){
-                    // gerar números até 999
-                    value = std::rand() % 1000;
+                    value = std::rand() % 1000;/**quantidade de digitos que os números devem ter*/
                     avlTree.insertValue(value);
                     //rbTree.insertValue(value);
                     randKey = randKey+" "+std::to_string(value);
 
                 }else{
-                    //intervalo de valores da tabela ASCII a ser gerado
-                    value = 58 + rand() % (126 - 58 +1);
+                    value = 58 + rand() % (126 - 58 +1);/**intervalo de valores da tabela ASCII a ser gerado */
                     rbTree.insertValue(value);
                     //avlTree.insertValue(value);
                     char aChar = (char) value;

@@ -4,7 +4,6 @@
 #include "utils.hpp"
 
 bool Utils::validInput(std::string input) {
-
     for(int i=0; i <input.length();i++){
         if(!isdigit(input[i]))
             return false;
@@ -30,6 +29,8 @@ void Utils::runRBTRight(Pile &p, Node *&r) {
         return;
     runRBTRight(p,r->right);
 }
+
+
 
 std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
     //constructTime = 0;
@@ -59,6 +60,7 @@ std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
 
 
     }
+
     clock_t end = clock();
     constructTime = ((double) (end - start))/CLOCKS_PER_SEC;
 
