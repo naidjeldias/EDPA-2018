@@ -12,6 +12,7 @@ int main() {
     AvlTree avlTree;
     Utils utils;
 
+
     while(opt == 0){
         std::cout <<"Gostaria de inserir os caracteres da chave ou gerar uma aleatoria:\n";
         std::cout << "1 - para inserir\n";
