@@ -44,12 +44,14 @@ std::string Utils::intercalate(AvlTree avlTree, RBTree rbTree) {
 
     runAvlRight(avlStack, rAvl);
     runRBTRight(rbtStack, rRbt);
+    int hmax = std::max(avlStack.getSize(), rbtStack.getSize());
 
-    for (int i = 0; i <= std::max(avlStack.getSize(), rbtStack.getSize()) +1 ; ++i) {
-        if(avlStack.getSize()>=0)
+    for (int i = 0; i < hmax ; ++i) {
+        if(rbtStack.getSize() > 0)
             pswd += (char) rbtStack.pop();
-        if(rbtStack.getSize() >= 0)
+        if(avlStack.getSize()>0)
             pswd += std::to_string(avlStack.pop());
+
     }
     clock_t end = clock();
     constructTime = ((double) (end - start))/CLOCKS_PER_SEC;
